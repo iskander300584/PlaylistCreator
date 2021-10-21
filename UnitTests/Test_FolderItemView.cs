@@ -1,12 +1,16 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PlaylistMaker.Contexts;
 using PlaylistMaker.ViewModels;
+using System.Linq;
 
 
 namespace UnitTests
 {
+    /// <summary>
+    /// Тестирование класса FolderItemView
+    /// </summary>
     [TestClass]
-    public class Test_FolderItemViev
+    public class Test_FolderItemView
     {
         /// <summary>
         /// Тестирование статуса Exist
@@ -60,6 +64,44 @@ namespace UnitTests
         {
             FolderItemView folderItemView = new FolderItemView(Constants.PATH_TO_PLAYLIST_FILE, Constants.PATH_TO_MUSIC_FOLDER, false);
             Assert.AreEqual(@"Rock\", folderItemView.RelativeName);
+        }
+
+
+        /// <summary>
+        /// Тестирование автоматического добавления списка файлов 
+        /// </summary>
+        [TestMethod]
+        public void Test_AutoAddFiles()
+        {
+            FolderItemView folderItemView = new FolderItemView(Constants.PATH_TO_PLAYLIST_FILE, Constants.PATH_TO_MUSIC_FOLDER, true);
+            Assert.AreEqual(Constants.FILES.Length, folderItemView.Files.Count, "Количество добавленных файлов не соответствует");
+
+            foreach (string file in Constants.FILES)
+            {
+                bool fileExist = folderItemView.Files.Any(f => f.FullName.ToLower() == file.ToLower());
+                Assert.AreEqual(true, fileExist, $"Файл {file} не добавлен");
+            }
+        }
+
+
+        /// <summary>
+        /// Тестирование ручного добавления списка файлов 
+        /// </summary>
+        [TestMethod]
+        public void Test_ManualAddFiles()
+        {
+            FolderItemView folderItemView = new FolderItemView(Constants.PATH_TO_PLAYLIST_FILE, Constants.PATH_TO_MUSIC_FOLDER, false);
+
+            string[] files = { Constants.FILE_1_PATH, Constants.FILE_2_PATH };
+            folderItemView.AddFiles(files);
+
+            Assert.AreEqual(files.Length, folderItemView.Files.Count, "Количество добавленных файлов не соответствует");
+
+            foreach (string file in files)
+            {
+                bool fileExist = folderItemView.Files.Any(f => f.FullName.ToLower() == file.ToLower());
+                Assert.AreEqual(true, fileExist, $"Файл {file} не добавлен");
+            }
         }
     }
 }

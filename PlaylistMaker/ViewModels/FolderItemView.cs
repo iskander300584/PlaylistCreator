@@ -169,7 +169,9 @@ namespace PlaylistMaker.ViewModels
             if (Status != ItemStatus.Exist)
                 return;
 
-
+            foreach (string fileName in files)
+                if (!Files.Any(f => f.FullName.ToLower() == fileName.ToLower()))
+                    Files.Add(new FileItemView(fileName, this));
         }
     }
 }

@@ -41,5 +41,12 @@ namespace PlaylistMaker.Helpers
 
             return allowed.ToArray();
         }
+
+
+        // TODO
+        internal static int GetDuration(string fileName)
+        {
+            return 0;
+        }
     }
 }

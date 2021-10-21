@@ -50,7 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="Test_FolderItemViev.cs" />
+    <Compile Include="Test_FileItemView.cs" />
+    <Compile Include="Test_FolderItemView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -14,4 +14,3 @@ E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\obj\Debug\UnitTests.pdb
 E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\bin\Debug\PlaylistMaker.exe
 E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\bin\Debug\PlaylistMaker.pdb
 E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\bin\Debug\PlaylistMaker.exe.config
-E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\obj\Debug\UnitTests.csproj.CopyComplete

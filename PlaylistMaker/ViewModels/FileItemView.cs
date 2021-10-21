@@ -1,10 +1,14 @@
-﻿using System;
+﻿using PlaylistMaker.Contexts;
+using PlaylistMaker.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace PlaylistMaker.ViewModels
 {
@@ -17,7 +21,7 @@ namespace PlaylistMaker.ViewModels
         /// <summary>
         /// Полное имя файла
         /// </summary>
-        internal string FullName
+        public string FullName
         {
             get => fullName;
             private set
@@ -35,7 +39,7 @@ namespace PlaylistMaker.ViewModels
         /// <summary>
         /// Имя файла
         /// </summary>
-        internal string FileName
+        public string FileName
         {
             get => fileName;
             private set
@@ -49,29 +53,11 @@ namespace PlaylistMaker.ViewModels
         }
 
 
-        /*private string folderName = string.Empty;
-        /// <summary>
-        /// Имя директории
-        /// </summary>
-        internal string FolderName
-        {
-            get => folderName;
-            private set
-            {
-                if (folderName != value)
-                {
-                    folderName = value;
-                    OnPropertyChanged();
-                }
-            }
-        }*/
-
-
         private FolderItemView folder = null;
         /// <summary>
         /// Директория
         /// </summary>
-        internal FolderItemView Folder
+        public FolderItemView Folder
         {
             get => folder;
             private set
@@ -89,7 +75,7 @@ namespace PlaylistMaker.ViewModels
         /// <summary>
         /// Длительность
         /// </summary>
-        internal int Duration
+        public int Duration
         {
             get => duration;
             private set
@@ -103,9 +89,59 @@ namespace PlaylistMaker.ViewModels
         }
 
 
+        /// <summary>
+        /// Визуальное представление файла
+        /// </summary>
+        /// <param name="path">путь к файлу</param>
+        /// <param name="folderItem">папка</param>
+        public FileItemView(string path, FolderItemView folderItem)
+        {
+            Folder = folderItem;
+            FullName = path;
+
+            GetStatus();
+        }
+
+
+        /// <summary>
+        /// Получение статуса
+        /// </summary>
+        /// <param name="parameter">параметр
+        /// <code>
+        /// для файла параметр пустой
+        /// </code>
+        /// </param>
         protected override void GetStatus(string parameter = "")
         {
-            throw new NotImplementedException();
+            // Проверка существования файла
+            if(!File.Exists(FullName))
+            {
+                Status = ItemStatus.NotExist;
+                FileName = string.Empty;
+                Duration = 0;
+                return;
+            }
+
+            FileInfo fileInfo = new FileInfo(FullName);
+            FileName = fileInfo.Name;
+
+            // Проверка вложенности в папку
+            if(Folder == null)
+            {
+                Status = ItemStatus.NotInFolder;
+                Duration = 0;
+                return;
+            }
+
+            if((fileInfo.Directory.FullName + "\\").ToLower() != new DirectoryInfo(Folder.FullName).FullName.ToLower())
+            {
+                Status = ItemStatus.NotInFolder;
+                Duration = 0;
+                return;
+            }
+
+            Status = ItemStatus.Exist;
+            Duration = FileHelper.GetDuration(FullName);
         }
     }
 }
