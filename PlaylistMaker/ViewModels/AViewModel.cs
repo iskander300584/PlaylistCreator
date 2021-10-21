@@ -8,13 +8,13 @@ namespace PlaylistMaker.ViewModels
     /// <summary>
     /// Визуальное представление элемента
     /// </summary>
-    internal abstract class AViewModel : INotifyPropertyChanged
+    public abstract class AViewModel : INotifyPropertyChanged
     {
         protected ItemStatus status = ItemStatus.Exist;
         /// <summary>
         /// Статус
         /// </summary>
-        internal ItemStatus Status
+        public ItemStatus Status
         {
             get => status;
             set

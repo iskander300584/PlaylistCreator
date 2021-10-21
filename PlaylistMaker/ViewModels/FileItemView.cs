@@ -11,7 +11,7 @@ namespace PlaylistMaker.ViewModels
     /// <summary>
     /// Визуальное представление файла
     /// </summary>
-    internal class FileItemView : AViewModel
+    public class FileItemView : AViewModel
     {
         private string fullName = string.Empty;
         /// <summary>

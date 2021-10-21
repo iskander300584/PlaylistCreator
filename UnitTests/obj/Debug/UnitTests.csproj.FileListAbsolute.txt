@@ -1,0 +1,16 @@
+E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\bin\Debug\UnitTests.dll
+E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\bin\Debug\UnitTests.pdb
+E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\obj\Debug\UnitTests.csproj.AssemblyReference.cache
+E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\obj\Debug\UnitTests.csproj.CoreCompileInputs.cache
+E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\obj\Debug\UnitTests.dll
+E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\obj\Debug\UnitTests.pdb
+E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\bin\Debug\PlaylistMaker.exe
+E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\bin\Debug\PlaylistMaker.pdb
+E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\bin\Debug\PlaylistMaker.exe.config

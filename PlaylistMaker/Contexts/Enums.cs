@@ -9,7 +9,7 @@ namespace PlaylistMaker.Contexts
     /// <summary>
     /// Статус
     /// </summary>
-    internal enum ItemStatus
+    public enum ItemStatus
     {
         /// <summary>
         /// Существует

@@ -13,13 +13,13 @@ namespace PlaylistMaker.ViewModels
     /// <summary>
     /// Визуальное представление директории
     /// </summary>
-    internal class FolderItemView : AViewModel
+    public class FolderItemView : AViewModel
     {
         private string fullName = string.Empty;
         /// <summary>
         /// Полное имя директории
         /// </summary>
-        internal string FullName
+        public string FullName
         {
             get => fullName;
             private set
@@ -37,7 +37,7 @@ namespace PlaylistMaker.ViewModels
         /// <summary>
         /// Относительное имя
         /// </summary>
-        internal string RelativeName
+        public string RelativeName
         {
             get => relativeName;
             private set
@@ -55,7 +55,7 @@ namespace PlaylistMaker.ViewModels
         /// <summary>
         /// Имя директории
         /// </summary>
-        internal string Name
+        public string Name
         {
             get => name;
             private set
@@ -73,7 +73,7 @@ namespace PlaylistMaker.ViewModels
         /// <summary>
         /// Список вложенных файлов
         /// </summary>
-        internal ObservableCollection<FileItemView> Files
+        public ObservableCollection<FileItemView> Files
             => files;
 
 
@@ -83,7 +83,7 @@ namespace PlaylistMaker.ViewModels
         /// <param name="folderForPlaylist">путь к папке, содержащей файл плей-листа</param>
         /// <param name="fullPath">путь к директории</param>
         /// <param name="addFiles">признак добавления всех файлов из директории</param>
-        internal FolderItemView(string folderForPlaylist, string fullPath, bool addFiles)
+        public FolderItemView(string folderForPlaylist, string fullPath, bool addFiles)
         {
             FullName = fullPath;
 
@@ -148,7 +148,7 @@ namespace PlaylistMaker.ViewModels
         /// <summary>
         /// Добавление всех файлов из директории
         /// </summary>
-        internal void AddFiles()
+        public void AddFiles()
         {
 
         }
@@ -158,7 +158,7 @@ namespace PlaylistMaker.ViewModels
         /// Добавление файлов из директории
         /// </summary>
         /// <param name="files">список файлов</param>
-        internal void AddFiles(string[] files)
+        public void AddFiles(string[] files)
         {
 
         }
