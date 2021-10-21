@@ -1,4 +1,5 @@
 ﻿using PlaylistMaker.Contexts;
+using PlaylistMaker.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -150,7 +151,12 @@ namespace PlaylistMaker.ViewModels
         /// </summary>
         public void AddFiles()
         {
+            if (Status != ItemStatus.Exist)
+                return;
 
+            string[] files = Directory.GetFiles(FullName);
+
+            AddFiles(FileHelper.GetAllowedFiles(files));
         }
 
 
@@ -160,6 +166,9 @@ namespace PlaylistMaker.ViewModels
         /// <param name="files">список файлов</param>
         public void AddFiles(string[] files)
         {
+            if (Status != ItemStatus.Exist)
+                return;
+
 
         }
     }

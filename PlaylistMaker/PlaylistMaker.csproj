@@ -61,6 +61,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Contexts\Enums.cs" />
+    <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="ViewModels\FolderItemView.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
