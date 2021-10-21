@@ -43,10 +43,18 @@ namespace PlaylistMaker.Helpers
         }
 
 
-        // TODO
+        /// <summary>
+        /// Получить продолжительность файла
+        /// </summary>
+        /// <param name="fileName">имя файла</param>
         internal static int GetDuration(string fileName)
         {
-            return 0;
+            TagLib.File tFile = TagLib.File.Create(fileName);
+
+            if (tFile != null)
+                return (int)tFile.Properties.Duration.TotalSeconds;
+            else
+                return 0;
         }
     }
 }

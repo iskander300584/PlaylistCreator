@@ -18,3 +18,6 @@ E:\GIT\PlaylistCreator\PlaylistCreator\PlaylistMaker\obj\Debug\PlaylistMaker.csp
 E:\GIT\PlaylistCreator\PlaylistCreator\PlaylistMaker\obj\Debug\PlaylistMaker.csproj.CoreCompileInputs.cache
 E:\GIT\PlaylistCreator\PlaylistCreator\PlaylistMaker\obj\Debug\PlaylistMaker.exe
 E:\GIT\PlaylistCreator\PlaylistCreator\PlaylistMaker\obj\Debug\PlaylistMaker.pdb
+E:\GIT\PlaylistCreator\PlaylistCreator\PlaylistMaker\bin\Debug\TagLibSharp.dll
+E:\GIT\PlaylistCreator\PlaylistCreator\PlaylistMaker\bin\Debug\TagLibSharp.pdb
+E:\GIT\PlaylistCreator\PlaylistCreator\PlaylistMaker\bin\Debug\TagLibSharp.xml

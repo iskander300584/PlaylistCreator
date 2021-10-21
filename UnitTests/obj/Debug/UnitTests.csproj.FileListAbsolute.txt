@@ -14,3 +14,6 @@ E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\obj\Debug\UnitTests.pdb
 E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\bin\Debug\PlaylistMaker.exe
 E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\bin\Debug\PlaylistMaker.pdb
 E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\bin\Debug\PlaylistMaker.exe.config
+E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\bin\Debug\TagLibSharp.dll
+E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\bin\Debug\TagLibSharp.pdb
+E:\GIT\PlaylistCreator\PlaylistCreator\UnitTests\bin\Debug\TagLibSharp.xml
