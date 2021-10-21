@@ -6,9 +6,12 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlaylistMaker
+namespace PlaylistMaker.ViewModels
 {
-    internal class FileItemView : INotifyPropertyChanged
+    /// <summary>
+    /// Визуальное представление файла
+    /// </summary>
+    internal class FileItemView : AViewModel
     {
         private string fullName = string.Empty;
         /// <summary>
@@ -46,7 +49,7 @@ namespace PlaylistMaker
         }
 
 
-        private string folderName = string.Empty;
+        /*private string folderName = string.Empty;
         /// <summary>
         /// Имя директории
         /// </summary>
@@ -58,6 +61,24 @@ namespace PlaylistMaker
                 if (folderName != value)
                 {
                     folderName = value;
+                    OnPropertyChanged();
+                }
+            }
+        }*/
+
+
+        private FolderItemView folder = null;
+        /// <summary>
+        /// Директория
+        /// </summary>
+        internal FolderItemView Folder
+        {
+            get => folder;
+            private set
+            {
+                if (folder != value)
+                {
+                    folder = value;
                     OnPropertyChanged();
                 }
             }
@@ -82,14 +103,9 @@ namespace PlaylistMaker
         }
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        /// <summary>
-        /// Изменение свойства
-        /// </summary>
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        protected override void GetStatus(string parameter = "")
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            throw new NotImplementedException();
         }
     }
 }

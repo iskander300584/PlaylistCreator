@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlaylistMaker
+
+namespace PlaylistMaker.Contexts
 {
     /// <summary>
     /// Контекст данных главного окна
@@ -47,6 +49,9 @@ namespace PlaylistMaker
                 }
             }
         }
+
+
+        //private ObservableCollection<FileItemView> items = new ObservableCollection<FileItemView>();
 
 
         public event PropertyChangedEventHandler PropertyChanged;
