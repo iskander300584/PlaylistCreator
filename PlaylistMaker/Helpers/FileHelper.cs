@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace PlaylistMaker.Helpers
 {
     /// <summary>
@@ -55,6 +56,25 @@ namespace PlaylistMaker.Helpers
                 return (int)tFile.Properties.Duration.TotalSeconds;
             else
                 return 0;
+        }
+
+
+        /// <summary>
+        /// Получение полного имени директории
+        /// </summary>
+        /// <param name="fileName"></param>
+        internal static string GetFolderFullName(string fileName)
+        {
+            if (!File.Exists(fileName))
+                return string.Empty;
+
+            FileInfo fileInfo = new FileInfo(fileName);
+            string directory = fileInfo.DirectoryName;
+
+            if (directory[directory.Length - 1] != '\\')
+                directory += '\\';
+
+            return directory;
         }
     }
 }
