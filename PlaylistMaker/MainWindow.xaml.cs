@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PlaylistMaker.Contexts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +17,26 @@ using System.Windows.Shapes;
 namespace PlaylistMaker
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Главное окно
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Контекст данных главного окна
+        /// </summary>
+        private MainWindowContext context;
+
+
+        /// <summary>
+        /// Главное окно
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
+
+            context = new MainWindowContext();
+
+            DataContext = context;
         }
     }
 }

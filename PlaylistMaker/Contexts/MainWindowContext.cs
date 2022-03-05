@@ -28,6 +28,8 @@ namespace PlaylistMaker.Contexts
                 {
                     folderForPlaylist = value;
                     OnPropertyChanged();
+
+                    GetPlaylistVisibleName();
                 }
             }
         }
@@ -46,12 +48,67 @@ namespace PlaylistMaker.Contexts
                 {
                     playlistFileName = value;
                     OnPropertyChanged();
+
+                    GetPlaylistVisibleName();
+                }
+            }
+        }
+
+        
+        private string playListVisibleName = string.Empty;
+        /// <summary>
+        /// Отображаемое имя плей-листа
+        /// </summary>
+        public string PlayListVisibleName
+        {
+            get => playlistFileName;
+            private set
+            {
+                if(playlistFileName != value)
+                {
+                    playlistFileName = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
 
+        private int sortIndex = 0;
+        /// <summary>
+        /// Порядок сортировки
+        /// </summary>
+        public int SortIndex
+        {
+            get => sortIndex;
+            set
+            {
+                if(sortIndex != value)
+                {
+                    sortIndex = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         //private ObservableCollection<FileItemView> items = new ObservableCollection<FileItemView>();
+
+
+        /// <summary>
+        /// Контекст данных главного окна
+        /// </summary>
+        internal MainWindowContext()
+        {
+            GetPlaylistVisibleName();
+        }
+
+
+        /// <summary>
+        /// Получение отображаемого имени плейлиста
+        /// </summary>
+        private void GetPlaylistVisibleName()
+        {
+            PlayListVisibleName = (PlaylistFileName != "") ? PlaylistFileName : FolderForPlayList;
+        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;

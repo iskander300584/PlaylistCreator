@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace PlaylistMaker.Helpers
@@ -62,7 +58,7 @@ namespace PlaylistMaker.Helpers
         /// <summary>
         /// Получение полного имени директории
         /// </summary>
-        /// <param name="fileName"></param>
+        /// <param name="fileName">имя файла</param>
         internal static string GetFolderFullName(string fileName)
         {
             if (!File.Exists(fileName))
