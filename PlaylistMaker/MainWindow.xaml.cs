@@ -1,20 +1,10 @@
 ﻿using PlaylistMaker.Contexts;
 using PlaylistMaker.Helpers;
 using PlaylistMaker.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 
 namespace PlaylistMaker
@@ -42,6 +32,12 @@ namespace PlaylistMaker
         /// Команда добавления папки с файлами
         /// </summary>
         public static RoutedUICommand AddFolder_Command = new RoutedUICommand("AddFolder", "AddFolder", typeof(MainWindow));
+
+
+        /// <summary>
+        /// Команда добавления файлов
+        /// </summary>
+        public static RoutedUICommand AddFile_Command = new RoutedUICommand("AddFile", "AddFile", typeof(MainWindow));
 
 
         /// <summary>
@@ -158,6 +154,24 @@ namespace PlaylistMaker
         private void Save_Execute(object sender, ExecutedRoutedEventArgs e)
         {
             context.Save();
+        }
+
+
+        /// <summary>
+        /// Проверка возможности добавления файлов
+        /// </summary>
+        private void AddFile_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = context != null && context.FolderForPlayList != null && context.FolderForPlayList != "";
+        }
+
+
+        /// <summary>
+        /// Добавление файлов
+        /// </summary>
+        private void AddFile_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            context.AddFiles();
         }
     }
 }

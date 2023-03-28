@@ -17,6 +17,9 @@
         <!-- Добавление папки -->
         <CommandBinding Command="local:MainWindow.AddFolder_Command" CanExecute="AddFolder_CanExecute" Executed="AddFolder_Execute" />
 
+        <!-- Добавление файла -->
+        <CommandBinding Command="local:MainWindow.AddFile_Command" CanExecute="AddFile_CanExecute" Executed="AddFile_Execute" />
+
         <!-- Удаление файла -->
         <CommandBinding Command="local:MainWindow.Remove_Command" CanExecute="Remove_CanExecute" Executed="Remove_Execute" />
 
@@ -112,7 +115,7 @@
             </Button>
             
             <!-- Кнопка Добавить файлы -->
-            <Button Style="{StaticResource buttonStyle}" ToolTip="Добавить файлы" >
+            <Button Style="{StaticResource buttonStyle}" ToolTip="Добавить файлы" Command="local:MainWindow.AddFile_Command" >
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="Images\file.png" Style="{StaticResource mainImageStyle}" />

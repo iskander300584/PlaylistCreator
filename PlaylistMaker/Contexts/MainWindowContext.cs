@@ -272,6 +272,36 @@ namespace PlaylistMaker.Contexts
 
 
         /// <summary>
+        /// Добавить файлы
+        /// </summary>
+        internal void AddFiles()
+        {
+            OpenFileDialog dialog = new OpenFileDialog
+            {
+                InitialDirectory = FolderForPlayList,
+                CheckFileExists = true,
+                Filter = "Звуковые файлы|*.mp3;*.wav;*.wma;",
+                FilterIndex = 0,
+                Multiselect = true
+            };
+
+            if (dialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            FileInfo fileInfo = new FileInfo(dialog.FileNames[0]);
+            FolderItemView folderItem = new FolderItemView(FolderForPlayList, fileInfo.DirectoryName, false);
+            if(folderItem.Status == ItemStatus.Exist)
+            {
+                foreach (string fileName in dialog.FileNames)
+                {
+                    FileItemView file = new FileItemView(fileName, folderItem);
+                    AddItem(file);
+                }
+            }
+        }
+
+
+        /// <summary>
         /// Пересортировать файлы
         /// </summary>
         private void ReSortItems()
