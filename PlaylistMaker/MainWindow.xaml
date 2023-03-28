@@ -4,12 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlaylistMaker"
+        xmlns:vm="clr-namespace:PlaylistMaker.ViewModels"
         mc:Ignorable="d"
         Icon="Images\logo.png"
         Title="Конструктор плей-листа" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowState="Maximized" >
 
     <Window.CommandBindings>
         <CommandBinding Command="local:MainWindow.SelectPlaylistFolder_Command" CanExecute="SelectPlaylistFolder_CanExecute" Executed="SelectPlaylistFolder_Execute" />
+
+        <CommandBinding Command="local:MainWindow.AddFolder_Command" CanExecute="AddFolder_CanExecute" Executed="AddFolder_Execute" />
     </Window.CommandBindings>
     
     <Window.Resources>
@@ -86,7 +89,7 @@
             </Button>
 
             <!-- Кнопка Добавить папку -->
-            <Button Style="{StaticResource buttonStyle}" ToolTip="Добавить папку" >
+            <Button Style="{StaticResource buttonStyle}" ToolTip="Добавить папку" Command="local:MainWindow.AddFolder_Command" >
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="Images\folder.png" Style="{StaticResource mainImageStyle}" />
@@ -106,7 +109,16 @@
             </Button>
         </DockPanel>
 
-        <ListView Grid.Row="2" Margin="5,5,5,5" Grid.ColumnSpan="2" />
+        <ListView Grid.Row="2" Margin="5,5,5,5" Grid.ColumnSpan="2" ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Stretch" >
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="vm:FileItemView">
+                    <DockPanel LastChildFill="True" >
+                        <TextBlock Text="{Binding Duration, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" Margin="5,0,0,0" />
+                        <TextBlock Text="{Binding FileName, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Left" />
+                    </DockPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
         <DockPanel LastChildFill="False" Grid.Row="3" Margin="5,0,5,5" >
 

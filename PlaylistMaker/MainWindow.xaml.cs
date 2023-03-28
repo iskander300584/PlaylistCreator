@@ -35,6 +35,12 @@ namespace PlaylistMaker
         /// </summary>
         public static RoutedUICommand SelectPlaylistFolder_Command = new RoutedUICommand("SelectPlaylistFolder", "SelectPlaylistFolder", typeof(MainWindow));
 
+
+        /// <summary>
+        /// Команда добавления папки с файлами
+        /// </summary>
+        public static RoutedUICommand AddFolder_Command = new RoutedUICommand("AddFolder", "AddFolder", typeof(MainWindow));
+
         #endregion
 
 
@@ -66,6 +72,24 @@ namespace PlaylistMaker
         private void SelectPlaylistFolder_Execute(object sender, ExecutedRoutedEventArgs e)
         {
             context.SelectPlaylistFolder();
+        }
+
+
+        /// <summary>
+        /// Проверка возможности добавить папку с файлами
+        /// </summary>
+        private void AddFolder_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = context != null && context.FolderForPlayList != null && context.FolderForPlayList != "";
+        }
+
+
+        /// <summary>
+        /// Добавить папку
+        /// </summary>
+        private void AddFolder_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            context.AddFolder();
         }
     }
 }

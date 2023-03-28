@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -97,8 +98,26 @@ namespace PlaylistMaker.Contexts
         /// <summary>
         /// Список файлов
         /// </summary>
-        private ObservableCollection<FileItemView> Items
+        public ObservableCollection<FileItemView> Items
             => items;
+
+
+        private List<FileItemView> selectedItems = null;
+        /// <summary>
+        /// Список выбранных файлов
+        /// </summary>
+        public List<FileItemView> SelectedItems
+        {
+            get => selectedItems;
+            set
+            {
+                if(selectedItems != value)
+                {
+                    selectedItems = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
 
         /// <summary>
@@ -136,7 +155,7 @@ namespace PlaylistMaker.Contexts
         internal void SelectPlaylistFolder()
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
-            dialog.ShowNewFolderButton = true;
+            dialog.ShowNewFolderButton = false;
 
             if (dialog.ShowDialog() != DialogResult.OK)
                 return;
@@ -152,6 +171,24 @@ namespace PlaylistMaker.Contexts
         {
             // выбрать файл плейлист
             // загрузить данные плейлиста на форму
+        }
+
+
+        /// <summary>
+        /// Добавить папку
+        /// </summary>
+        internal void AddFolder()
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.ShowNewFolderButton = false;
+
+            if (dialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            FolderItemView folderItem = new FolderItemView(FolderForPlayList, dialog.SelectedPath, true);
+            if (folderItem.Files.Count > 0)
+                foreach (FileItemView file in folderItem.Files)
+                    Items.Add(file);
         }
     }
 }

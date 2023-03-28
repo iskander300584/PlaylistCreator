@@ -133,7 +133,7 @@ namespace PlaylistMaker.ViewModels
                 return;
             }
 
-            if((fileInfo.Directory.FullName + "\\").ToLower() != new DirectoryInfo(Folder.FullName).FullName.ToLower())
+            if(fileInfo.Directory.FullName.ToLower() != new DirectoryInfo(Folder.FullName).FullName.ToLower())
             {
                 Status = ItemStatus.NotInFolder;
                 Duration = 0;
