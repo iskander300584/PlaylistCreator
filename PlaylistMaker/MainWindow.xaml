@@ -9,12 +9,19 @@
         Icon="Images\logo.png"
         Title="Конструктор плей-листа" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowState="Maximized" >
 
+    <!-- Команды -->
     <Window.CommandBindings>
+        <!-- Выбор папки -->
         <CommandBinding Command="local:MainWindow.SelectPlaylistFolder_Command" CanExecute="SelectPlaylistFolder_CanExecute" Executed="SelectPlaylistFolder_Execute" />
 
+        <!-- Добавление папки -->
         <CommandBinding Command="local:MainWindow.AddFolder_Command" CanExecute="AddFolder_CanExecute" Executed="AddFolder_Execute" />
 
+        <!-- Удаление файла -->
         <CommandBinding Command="local:MainWindow.Remove_Command" CanExecute="Remove_CanExecute" Executed="Remove_Execute" />
+
+        <!-- Сохранение -->
+        <CommandBinding Command="local:MainWindow.Save_Command" CanExecute="Save_CanExecute" Executed="Save_Execute" />
     </Window.CommandBindings>
 
     <Window.InputBindings>
@@ -144,7 +151,7 @@
             </Button>
 
             <!-- Кнопка Сохранить -->
-            <Button Style="{StaticResource buttonStyle}" ToolTip="Сохранить" >
+            <Button Style="{StaticResource buttonStyle}" ToolTip="Сохранить" Command="local:MainWindow.Save_Command" >
                 <Button.Content>
                     <Image Source="Images\save.png" Style="{StaticResource mainImageStyle}" />
                 </Button.Content>

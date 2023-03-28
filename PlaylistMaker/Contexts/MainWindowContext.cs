@@ -18,6 +18,9 @@ namespace PlaylistMaker.Contexts
     /// </summary>
     internal class MainWindowContext : INotifyPropertyChanged
     {
+        private MainWindow window;
+
+
         private string folderForPlaylist = string.Empty;
         /// <summary>
         /// Путь к папке плейлиста
@@ -136,8 +139,10 @@ namespace PlaylistMaker.Contexts
         /// <summary>
         /// Контекст данных главного окна
         /// </summary>
-        internal MainWindowContext()
+        internal MainWindowContext(MainWindow window)
         {
+            this.window = window;
+
             GetPlaylistVisibleName();
         }
 
@@ -284,15 +289,60 @@ namespace PlaylistMaker.Contexts
         }
 
 
+        /// <summary>
+        /// Удаление выбранных файлов
+        /// </summary>
+        /// <param name="list">список файлов</param>
         internal void RemoveItems(List<FileItemView> list)
         {
             for (int i = 0; i < list.Count; i++)
                 Items.Remove(list[i]);
+        }
 
-            //List<FileItemView> _tmp = new List<FileItemView>();
-            //SelectedItems.ForEach(i => _tmp.Add(i));
 
-            //_tmp.ForEach(i => Items.Remove(i));
+        /// <summary>
+        /// Сохранение плейлиста
+        /// </summary>
+        internal void Save()
+        {
+            // TODO
+            if (PlaylistFileName == null || PlaylistFileName == "")
+                PlaylistFileName = "playList.m3u";
+
+            string fileName = Path.Combine(FolderForPlayList, PlaylistFileName);
+            FileInfo fileInfo = new FileInfo(fileName);
+            using (StreamWriter stream = new StreamWriter(fileInfo.Create(), Encoding.UTF8))
+            {
+                stream.WriteLine(@"#EXTM3U");
+
+                foreach (FileItemView file in Items)
+                    WriteItem(file, stream);
+
+                stream.Close();
+            }
+
+            Ascon.Dialogs.Dialogs.InfoMessage("Сохранение выполнено успешно", window);
+        }
+
+
+        /// <summary>
+        /// Добавление записи о файле
+        /// </summary>
+        /// <param name="file">файл</param>
+        /// <param name="stream">поток записи</param>
+        private void WriteItem(FileItemView file, StreamWriter stream)
+        {
+            int index = file.FileName.LastIndexOf('.');
+            if (index == -1)
+                return;
+
+            string name = file.FileName.Substring(0, index);
+
+            string title = $@"#EXTINF:{file.Duration},{name}";
+            stream.WriteLine(title);
+
+            string path = Path.Combine(file.Folder.RelativeName, file.FileName);
+            stream.WriteLine(path);
         }
     }
 }

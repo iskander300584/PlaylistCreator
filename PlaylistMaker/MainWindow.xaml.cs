@@ -49,6 +49,12 @@ namespace PlaylistMaker
         /// </summary>
         public static RoutedUICommand Remove_Command = new RoutedUICommand("Remove", "Remove", typeof(MainWindow));
 
+
+        /// <summary>
+        /// Команда сохранения
+        /// </summary>
+        public static RoutedUICommand Save_Command = new RoutedUICommand("Save", "Save", typeof(MainWindow));
+
         #endregion
 
 
@@ -59,7 +65,7 @@ namespace PlaylistMaker
         {
             InitializeComponent();
 
-            context = new MainWindowContext();
+            context = new MainWindowContext(this);
 
             DataContext = context;
 
@@ -134,6 +140,24 @@ namespace PlaylistMaker
                 Close();
             else if ((bool)Ascon.Dialogs.Dialogs.QuestionMessage("Закрыть без сохранения?", this))
                 Close();
+        }
+
+
+        /// <summary>
+        /// Проверка возможности сохранения
+        /// </summary>
+        private void Save_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = context != null && context.Items != null && context.Items.Count > 0 && !context.Items.Any(i => i.Status != ItemStatus.Exist);
+        }
+
+
+        /// <summary>
+        /// Сохранение
+        /// </summary>
+        private void Save_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            context.Save();
         }
     }
 }
