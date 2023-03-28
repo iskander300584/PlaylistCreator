@@ -84,6 +84,26 @@ namespace PlaylistMaker.ViewModels
                 {
                     duration = value;
                     OnPropertyChanged();
+
+                    GetStringDuration();
+                }
+            }
+        }
+
+
+        private string strDuration = string.Empty;
+        /// <summary>
+        /// Строковое представление длительности
+        /// </summary>
+        public string StrDuration
+        {
+            get => strDuration;
+            private set
+            {
+                if(strDuration != value)
+                {
+                    strDuration = value;
+                    OnPropertyChanged();
                 }
             }
         }
@@ -142,6 +162,26 @@ namespace PlaylistMaker.ViewModels
 
             Status = ItemStatus.Exist;
             Duration = FileHelper.GetDuration(FullName);
+        }
+
+
+        /// <summary>
+        /// Получить строковое представление длительности
+        /// </summary>
+        private void GetStringDuration()
+        {
+            if(Duration <= 0)
+            {
+                StrDuration = string.Empty;
+                return;
+            }
+
+            int minutes = Duration / 60;
+
+            int seconds = Duration - (minutes * 60);
+            string _sec = seconds > 9? seconds.ToString() : "0" + seconds.ToString();
+
+            StrDuration = $"{minutes}:{_sec}";
         }
     }
 }

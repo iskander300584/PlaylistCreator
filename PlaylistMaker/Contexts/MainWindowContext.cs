@@ -180,13 +180,14 @@ namespace PlaylistMaker.Contexts
         internal void AddFolder()
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.SelectedPath = FolderForPlayList;
             dialog.ShowNewFolderButton = false;
 
             if (dialog.ShowDialog() != DialogResult.OK)
                 return;
 
             FolderItemView folderItem = new FolderItemView(FolderForPlayList, dialog.SelectedPath, true);
-            if (folderItem.Files.Count > 0)
+            if (folderItem.Files.Count > 0 && folderItem.Status == ItemStatus.Exist)
                 foreach (FileItemView file in folderItem.Files)
                     Items.Add(file);
         }
