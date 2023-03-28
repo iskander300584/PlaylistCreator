@@ -29,6 +29,12 @@ namespace PlaylistMaker
 
 
         /// <summary>
+        /// Команда выбора файла плейлиста
+        /// </summary>
+        public static RoutedUICommand SelectPlaylistFile_Command = new RoutedUICommand("SelectPlaylist", "SelectPlaylist", typeof(MainWindow));
+
+
+        /// <summary>
         /// Команда добавления папки с файлами
         /// </summary>
         public static RoutedUICommand AddFolder_Command = new RoutedUICommand("AddFolder", "AddFolder", typeof(MainWindow));
@@ -184,6 +190,24 @@ namespace PlaylistMaker
         private void Quit_Execute(object sender, ExecutedRoutedEventArgs e)
         {
             context.Quit();
+        }
+
+
+        /// <summary>
+        /// Проверка возможности выбора плейлиста
+        /// </summary>
+        private void SelectPlaylist_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = context != null;
+        }
+
+
+        /// <summary>
+        /// Выбор плейлиста
+        /// </summary>
+        private void SelectPlaylist_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            context.SelectPlaylistFile();
         }
     }
 }
