@@ -143,6 +143,7 @@ namespace PlaylistMaker.ViewModels
 
             RelativeName = relative;
             Status = ItemStatus.Exist;
+            StatusImage = ItemStatusFabrique.GetImage(Status);
         }
 
 

@@ -1,4 +1,5 @@
 ﻿using PlaylistMaker.Contexts;
+using PlaylistMaker.Helpers;
 using PlaylistMaker.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -61,6 +62,8 @@ namespace PlaylistMaker
             context = new MainWindowContext();
 
             DataContext = context;
+
+            ItemStatusFabrique.Initialize();
         }
 
 

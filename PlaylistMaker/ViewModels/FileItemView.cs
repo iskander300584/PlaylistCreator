@@ -162,6 +162,7 @@ namespace PlaylistMaker.ViewModels
 
             Status = ItemStatus.Exist;
             Duration = FileHelper.GetDuration(FullName);
+            StatusImage = ItemStatusFabrique.GetImage(Status);
         }
 
 

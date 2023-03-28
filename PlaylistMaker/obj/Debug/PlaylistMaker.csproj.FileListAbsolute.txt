@@ -49,3 +49,15 @@ E:\GIT\PlaylistMaker\obj\Debug\PlaylistMaker.exe
 E:\GIT\PlaylistMaker\obj\Debug\PlaylistMaker.pdb
 e:\GIT\PlaylistMaker\bin\Debug\Ascon.Dialogs.dll
 e:\GIT\PlaylistMaker\bin\Debug\Ascon.Dialogs.pdb
+e:\GIT\PlaylistMaker\obj\Debug\PlaylistMaker_Content.g.cs
+e:\GIT\PlaylistMaker\bin\Debug\Images\error.png
+e:\GIT\PlaylistMaker\bin\Debug\Images\file.png
+e:\GIT\PlaylistMaker\bin\Debug\Images\folder.png
+e:\GIT\PlaylistMaker\bin\Debug\Images\logo.png
+e:\GIT\PlaylistMaker\bin\Debug\Images\minus.png
+e:\GIT\PlaylistMaker\bin\Debug\Images\music.png
+e:\GIT\PlaylistMaker\bin\Debug\Images\plus.png
+e:\GIT\PlaylistMaker\bin\Debug\Images\plus_small.png
+e:\GIT\PlaylistMaker\bin\Debug\Images\save.png
+e:\GIT\PlaylistMaker\bin\Debug\Images\sucsess.png
+e:\GIT\PlaylistMaker\bin\Debug\Images\warning.png

@@ -1,6 +1,8 @@
 ﻿using PlaylistMaker.Contexts;
+using PlaylistMaker.Helpers;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Media.Imaging;
 
 
 namespace PlaylistMaker.ViewModels
@@ -22,6 +24,26 @@ namespace PlaylistMaker.ViewModels
                 if (status != value)
                 {
                     status = value;
+                    OnPropertyChanged();
+
+                    StatusImage = ItemStatusFabrique.GetImage(status);
+                }
+            }
+        }
+
+
+        protected System.Windows.Media.ImageSource statusImage = null;
+        /// <summary>
+        /// Пиктограмма статуса
+        /// </summary>
+        public System.Windows.Media.ImageSource StatusImage
+        {
+            get => statusImage;
+            protected set
+            {
+                if (statusImage != value)
+                {
+                    statusImage = value;
                     OnPropertyChanged();
                 }
             }
