@@ -282,5 +282,17 @@ namespace PlaylistMaker.Contexts
             foreach (FileItemView item in _temp)
                 Items.Add(item);
         }
+
+
+        internal void RemoveItems(List<FileItemView> list)
+        {
+            for (int i = 0; i < list.Count; i++)
+                Items.Remove(list[i]);
+
+            //List<FileItemView> _tmp = new List<FileItemView>();
+            //SelectedItems.ForEach(i => _tmp.Add(i));
+
+            //_tmp.ForEach(i => Items.Remove(i));
+        }
     }
 }

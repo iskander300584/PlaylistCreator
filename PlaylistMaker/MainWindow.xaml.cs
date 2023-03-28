@@ -1,4 +1,5 @@
 ﻿using PlaylistMaker.Contexts;
+using PlaylistMaker.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,12 @@ namespace PlaylistMaker
         /// Команда добавления папки с файлами
         /// </summary>
         public static RoutedUICommand AddFolder_Command = new RoutedUICommand("AddFolder", "AddFolder", typeof(MainWindow));
+
+
+        /// <summary>
+        /// Команда удаления выбранных файлов
+        /// </summary>
+        public static RoutedUICommand Remove_Command = new RoutedUICommand("Remove", "Remove", typeof(MainWindow));
 
         #endregion
 
@@ -90,6 +97,28 @@ namespace PlaylistMaker
         private void AddFolder_Execute(object sender, ExecutedRoutedEventArgs e)
         {
             context.AddFolder();
+        }
+
+
+        /// <summary>
+        /// Проверка возможности удалить файлы
+        /// </summary>
+        private void Remove_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = context != null && listView.SelectedItems != null && listView.SelectedItems.Count > 0;
+        }
+
+
+        /// <summary>
+        /// Удалить файлы
+        /// </summary>
+        private void Remove_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            List<FileItemView> list = new List<FileItemView>();
+            foreach (object item in listView.SelectedItems)
+                list.Add(item as FileItemView);
+
+            context.RemoveItems(list);
         }
     }
 }

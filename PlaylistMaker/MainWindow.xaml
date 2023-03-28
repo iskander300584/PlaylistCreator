@@ -13,7 +13,13 @@
         <CommandBinding Command="local:MainWindow.SelectPlaylistFolder_Command" CanExecute="SelectPlaylistFolder_CanExecute" Executed="SelectPlaylistFolder_Execute" />
 
         <CommandBinding Command="local:MainWindow.AddFolder_Command" CanExecute="AddFolder_CanExecute" Executed="AddFolder_Execute" />
+
+        <CommandBinding Command="local:MainWindow.Remove_Command" CanExecute="Remove_CanExecute" Executed="Remove_Execute" />
     </Window.CommandBindings>
+
+    <Window.InputBindings>
+        <KeyBinding Gesture="Delete" Command="local:MainWindow.Remove_Command" />
+    </Window.InputBindings>
     
     <Window.Resources>
         
@@ -82,7 +88,7 @@
             <TextBlock Text="Список файлов" Style="{StaticResource textBlockStyle}" />
 
             <!-- Кнопка Удалить -->
-            <Button Style="{StaticResource buttonStyle}" Margin="5,0,5,0" ToolTip="Удалить" >
+            <Button Style="{StaticResource buttonStyle}" Margin="5,0,5,0" ToolTip="Удалить" Command="local:MainWindow.Remove_Command" >
                 <Button.Content>
                     <Image Source="Images\minus.png" Style="{StaticResource mainImageStyle}" />
                 </Button.Content>
@@ -109,7 +115,7 @@
             </Button>
         </DockPanel>
 
-        <ListView Grid.Row="2" Margin="5,5,5,5" Grid.ColumnSpan="2" ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Stretch" >
+        <ListView x:Name="listView" Grid.Row="2" Margin="5,5,5,5" Grid.ColumnSpan="2" ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Stretch" SelectionMode="Extended" >
             <ListView.ItemTemplate>
                 <DataTemplate DataType="vm:FileItemView">
                     <DockPanel LastChildFill="True" >
