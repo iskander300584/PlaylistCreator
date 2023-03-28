@@ -51,6 +51,12 @@ namespace PlaylistMaker
         /// </summary>
         public static RoutedUICommand Save_Command = new RoutedUICommand("Save", "Save", typeof(MainWindow));
 
+
+        /// <summary>
+        /// Команда закрытия без сохранения
+        /// </summary>
+        public static RoutedUICommand Quit_Command = new RoutedUICommand("Quit", "Quit", typeof(MainWindow));
+
         #endregion
 
 
@@ -128,18 +134,6 @@ namespace PlaylistMaker
 
 
         /// <summary>
-        /// Закрыть
-        /// </summary>
-        private void Exit_Click(object sender, RoutedEventArgs e)
-        {
-            if (context != null && (context.FolderForPlayList == null || context.FolderForPlayList == ""))
-                Close();
-            else if ((bool)Ascon.Dialogs.Dialogs.QuestionMessage("Закрыть без сохранения?", this))
-                Close();
-        }
-
-
-        /// <summary>
         /// Проверка возможности сохранения
         /// </summary>
         private void Save_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -172,6 +166,24 @@ namespace PlaylistMaker
         private void AddFile_Execute(object sender, ExecutedRoutedEventArgs e)
         {
             context.AddFiles();
+        }
+
+
+        /// <summary>
+        /// Проверка возможности закрыть без сохранения
+        /// </summary>
+        private void Quit_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = context != null && context.Items != null && context.Items.Count > 0;
+        }
+
+
+        /// <summary>
+        /// Закрыть без сохранения
+        /// </summary>
+        private void Quit_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            context.Quit();
         }
     }
 }

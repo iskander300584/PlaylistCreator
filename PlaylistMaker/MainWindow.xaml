@@ -25,6 +25,9 @@
 
         <!-- Сохранение -->
         <CommandBinding Command="local:MainWindow.Save_Command" CanExecute="Save_CanExecute" Executed="Save_Execute" />
+
+        <!-- Закрыть без сохранения -->
+        <CommandBinding Command="local:MainWindow.Quit_Command" CanExecute="Quit_CanExecute" Executed="Quit_Execute" />
     </Window.CommandBindings>
 
     <Window.InputBindings>
@@ -78,17 +81,51 @@
             <TextBlock Text="Папка для размещения файла плей-листа" Style="{StaticResource textBlockStyle}" />
             
             <!-- Кнопка Открыть плейлист -->
-            <Button Style="{StaticResource buttonStyle}" Margin="5,0,5,0" ToolTip="Открыть плейлист" >
-                <Button.Content>
-                    <Image Source="Images\music.png" Style="{StaticResource mainImageStyle}" />
-                </Button.Content>
+            <Button Margin="5,0,5,0" ToolTip="Открыть плейлист" >
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource buttonStyle}">
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="True" >
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <Image Source="Images\music.png" Style="{StaticResource mainImageStyle}" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False" >
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <Image Source="Images\music_gray.png" Style="{StaticResource mainImageStyle}" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
             </Button>
 
             <!-- Кнопка Выбрать папку -->
-            <Button Style="{StaticResource buttonStyle}" ToolTip="Выбрать папку" Command="local:MainWindow.SelectPlaylistFolder_Command" >
-                <Button.Content>
-                    <Image Source="Images\folder.png" Style="{StaticResource mainImageStyle}" />
-                </Button.Content>
+            <Button ToolTip="Выбрать папку" Command="local:MainWindow.SelectPlaylistFolder_Command" >
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource buttonStyle}">
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="True" >
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <Image Source="Images\folder.png" Style="{StaticResource mainImageStyle}" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False" >
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <Image Source="Images\folder_gray.png" Style="{StaticResource mainImageStyle}" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
             </Button>
 
             <TextBox DockPanel.Dock="Right" VerticalAlignment="Center" IsReadOnly="True" Text="{Binding PlayListVisibleName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
@@ -98,30 +135,87 @@
             <TextBlock Text="Список файлов" Style="{StaticResource textBlockStyle}" />
 
             <!-- Кнопка Удалить -->
-            <Button Style="{StaticResource buttonStyle}" Margin="5,0,5,0" ToolTip="Удалить" Command="local:MainWindow.Remove_Command" >
-                <Button.Content>
-                    <Image Source="Images\minus.png" Style="{StaticResource mainImageStyle}" />
-                </Button.Content>
+            <Button Margin="5,0,5,0" ToolTip="Удалить" Command="local:MainWindow.Remove_Command" >
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource buttonStyle}">
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="True" >
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <Image Source="Images\minus.png" Style="{StaticResource mainImageStyle}" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False" >
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <Image Source="Images\minus_gray.png" Style="{StaticResource mainImageStyle}" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
             </Button>
 
             <!-- Кнопка Добавить папку -->
-            <Button Style="{StaticResource buttonStyle}" ToolTip="Добавить папку" Command="local:MainWindow.AddFolder_Command" >
-                <Button.Content>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="Images\folder.png" Style="{StaticResource mainImageStyle}" />
-                        <Image Source="Images\plus_small.png" Style="{StaticResource additionalImageStyle}" />
-                    </StackPanel>
-                </Button.Content>
+            <Button ToolTip="Добавить папку" Command="local:MainWindow.AddFolder_Command" >
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource buttonStyle}">
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="True" >
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="Images\folder.png" Style="{StaticResource mainImageStyle}" />
+                                            <Image Source="Images\plus_small.png" Style="{StaticResource additionalImageStyle}" />
+                                        </StackPanel>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False" >
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="Images\folder_gray.png" Style="{StaticResource mainImageStyle}" />
+                                            <Image Source="Images\plus_small_gray.png" Style="{StaticResource additionalImageStyle}" />
+                                        </StackPanel>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
             </Button>
             
             <!-- Кнопка Добавить файлы -->
-            <Button Style="{StaticResource buttonStyle}" ToolTip="Добавить файлы" Command="local:MainWindow.AddFile_Command" >
-                <Button.Content>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="Images\file.png" Style="{StaticResource mainImageStyle}" />
-                        <Image Source="Images\plus_small.png" Style="{StaticResource additionalImageStyle}" />
-                    </StackPanel>
-                </Button.Content>
+            <Button ToolTip="Добавить файлы" Command="local:MainWindow.AddFile_Command" >
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource buttonStyle}">
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="True" >
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="Images\file.png" Style="{StaticResource mainImageStyle}" />
+                                            <Image Source="Images\plus_small.png" Style="{StaticResource additionalImageStyle}" />
+                                        </StackPanel>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False" >
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="Images\file_gray.png" Style="{StaticResource mainImageStyle}" />
+                                            <Image Source="Images\plus_small_gray.png" Style="{StaticResource additionalImageStyle}" />
+                                        </StackPanel>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
             </Button>
         </DockPanel>
 
@@ -147,17 +241,51 @@
             </ComboBox>
 
             <!-- Кнопка Закрыть без сохранения -->
-            <Button Style="{StaticResource buttonStyle}" ToolTip="Закрыть без сохранения" Click="Exit_Click" >
-                <Button.Content>
-                    <Image Source="Images\error.png" Style="{StaticResource mainImageStyle}" />
-                </Button.Content>
+            <Button ToolTip="Закрыть без сохранения" Command="local:MainWindow.Quit_Command" >
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource buttonStyle}">
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="True" >
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <Image Source="Images\error.png" Style="{StaticResource mainImageStyle}" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False" >
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <Image Source="Images\error_gray.png" Style="{StaticResource mainImageStyle}" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
             </Button>
 
             <!-- Кнопка Сохранить -->
-            <Button Style="{StaticResource buttonStyle}" ToolTip="Сохранить" Command="local:MainWindow.Save_Command" >
-                <Button.Content>
-                    <Image Source="Images\save.png" Style="{StaticResource mainImageStyle}" />
-                </Button.Content>
+            <Button ToolTip="Сохранить" Command="local:MainWindow.Save_Command" >
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource buttonStyle}">
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="True" >
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <Image Source="Images\save.png" Style="{StaticResource mainImageStyle}" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False" >
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <Image Source="Images\save_gray.png" Style="{StaticResource mainImageStyle}" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
             </Button>
         </DockPanel>
     </Grid>

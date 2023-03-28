@@ -9,15 +9,25 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/error.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/error_gray.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/file.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/file_gray.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/folder.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/folder_gray.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/logo.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/minus.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/minus_gray.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/music.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/music_gray.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/plus.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/plus_gray.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/plus_small.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/plus_small_gray.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/save.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/save_gray.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/sucsess.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/sucsess_gray.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/warning.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/warning_gray.png")]
 
 

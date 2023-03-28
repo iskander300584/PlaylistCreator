@@ -63,3 +63,13 @@ e:\GIT\PlaylistMaker\bin\Debug\Images\sucsess.png
 e:\GIT\PlaylistMaker\bin\Debug\Images\warning.png
 e:\GIT\PlaylistMaker\obj\Debug\PlaylistNameWindow.g.cs
 e:\GIT\PlaylistMaker\obj\Debug\PlaylistNameWindow.baml
+e:\GIT\PlaylistMaker\bin\Debug\Images\error_gray.png
+e:\GIT\PlaylistMaker\bin\Debug\Images\file_gray.png
+e:\GIT\PlaylistMaker\bin\Debug\Images\folder_gray.png
+e:\GIT\PlaylistMaker\bin\Debug\Images\minus_gray.png
+e:\GIT\PlaylistMaker\bin\Debug\Images\music_gray.png
+e:\GIT\PlaylistMaker\bin\Debug\Images\plus_gray.png
+e:\GIT\PlaylistMaker\bin\Debug\Images\plus_small_gray.png
+e:\GIT\PlaylistMaker\bin\Debug\Images\save_gray.png
+e:\GIT\PlaylistMaker\bin\Debug\Images\sucsess_gray.png
+e:\GIT\PlaylistMaker\bin\Debug\Images\warning_gray.png

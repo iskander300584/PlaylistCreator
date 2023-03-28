@@ -383,5 +383,15 @@ namespace PlaylistMaker.Contexts
             string path = Path.Combine(file.Folder.RelativeName, file.FileName);
             stream.WriteLine(path);
         }
+
+
+        /// <summary>
+        /// Закрыть
+        /// </summary>
+        internal void Quit()
+        {
+            if ((bool)Ascon.Dialogs.Dialogs.QuestionMessage("Закрыть без сохранения?", window))
+                window.Close();
+        }
     }
 }
