@@ -89,6 +89,8 @@ namespace PlaylistMaker.Contexts
                 {
                     sortIndex = value;
                     OnPropertyChanged();
+
+                    ReSortItems();
                 }
             }
         }
@@ -99,7 +101,18 @@ namespace PlaylistMaker.Contexts
         /// Список файлов
         /// </summary>
         public ObservableCollection<FileItemView> Items
-            => items;
+        { 
+            get => items;
+            private set
+            {
+                if(items != value)
+                {
+                    items = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
 
 
         private List<FileItemView> selectedItems = null;
@@ -189,7 +202,85 @@ namespace PlaylistMaker.Contexts
             FolderItemView folderItem = new FolderItemView(FolderForPlayList, dialog.SelectedPath, true);
             if (folderItem.Files.Count > 0 && folderItem.Status == ItemStatus.Exist)
                 foreach (FileItemView file in folderItem.Files)
-                    Items.Add(file);
+                    AddItem(file);
+        }
+
+
+        /// <summary>
+        /// Добавить файл в список
+        /// </summary>
+        /// <param name="item">файл</param>
+        private void AddItem(FileItemView item)
+        {
+            if (Items.Count == 0)
+            {
+                Items.Add(item);
+                return;
+            }
+
+            if (Items.Any(i => i.FileName == item.FileName && i.Folder.Name == item.Folder.Name))
+                return;
+
+            int index = Items.Count;
+
+            if(SortIndex == 0)
+            {
+                for (int i = 0; i < Items.Count; i++)
+                {
+                    int folderCompare = String.Compare(Items[i].Folder.Name, item.Folder.Name);
+
+                    if (folderCompare < 0)
+                        continue;
+                    else if(folderCompare > 0)
+                    {
+                        index = i;
+                        break;
+                    }
+
+                    if (String.Compare(Items[i].FileName, item.FileName) > 0)
+                    {
+                        index = i;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                for(int i = 0; i < Items.Count; i++)
+                {
+                    if(String.Compare(Items[i].FileName, item.FileName) > 0)
+                    {
+                        index = i;
+                        break;
+                    }
+                }
+            }
+
+            if (index == Items.Count)
+                Items.Add(item);
+            else
+                Items.Insert(index, item);
+        }
+
+
+        /// <summary>
+        /// Пересортировать файлы
+        /// </summary>
+        private void ReSortItems()
+        {
+            if (Items.Count < 2)
+                return;
+
+            List<FileItemView> _temp = new List<FileItemView>();
+
+            if (SortIndex == 0)
+                _temp = Items.OrderBy(i => i.Folder.Name).ThenBy(i => i.FileName).ToList();
+            else
+                _temp = Items.OrderBy(i => i.FileName).ToList();
+
+            Items = new ObservableCollection<FileItemView>();
+            foreach (FileItemView item in _temp)
+                Items.Add(item);
         }
     }
 }
