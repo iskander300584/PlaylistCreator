@@ -136,7 +136,7 @@
             </ComboBox>
 
             <!-- Кнопка Закрыть без сохранения -->
-            <Button Style="{StaticResource buttonStyle}" ToolTip="Закрыть без сохранения" >
+            <Button Style="{StaticResource buttonStyle}" ToolTip="Закрыть без сохранения" Click="Exit_Click" >
                 <Button.Content>
                     <Image Source="Images\error.png" Style="{StaticResource mainImageStyle}" />
                 </Button.Content>

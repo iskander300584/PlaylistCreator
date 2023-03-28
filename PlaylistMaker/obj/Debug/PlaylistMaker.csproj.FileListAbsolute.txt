@@ -47,3 +47,5 @@ E:\GIT\PlaylistMaker\obj\Debug\PlaylistMaker.csproj.CoreCompileInputs.cache
 E:\GIT\PlaylistMaker\obj\Debug\PlaylistMaker.csproj.CopyComplete
 E:\GIT\PlaylistMaker\obj\Debug\PlaylistMaker.exe
 E:\GIT\PlaylistMaker\obj\Debug\PlaylistMaker.pdb
+e:\GIT\PlaylistMaker\bin\Debug\Ascon.Dialogs.dll
+e:\GIT\PlaylistMaker\bin\Debug\Ascon.Dialogs.pdb

@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaylistMaker", "PlaylistMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{9AC0B8E6-769B-44F0-B5BB-32E5ED744B4B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{1DFC0B8B-FB4D-48EC-9982-A2CD41F568C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ascon.Dialogs", "D:\Projects\Libraries\Ascon.Dialogs\Ascon.Dialogs.csproj", "{6A5B65C0-F70E-4CED-9B0C-8F319965755E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +25,16 @@ Global
 		{9AC0B8E6-769B-44F0-B5BB-32E5ED744B4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AC0B8E6-769B-44F0-B5BB-32E5ED744B4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AC0B8E6-769B-44F0-B5BB-32E5ED744B4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A5B65C0-F70E-4CED-9B0C-8F319965755E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A5B65C0-F70E-4CED-9B0C-8F319965755E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A5B65C0-F70E-4CED-9B0C-8F319965755E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A5B65C0-F70E-4CED-9B0C-8F319965755E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6A5B65C0-F70E-4CED-9B0C-8F319965755E} = {1DFC0B8B-FB4D-48EC-9982-A2CD41F568C2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A8263319-C814-41C4-92FA-8A5E7308CDA5}

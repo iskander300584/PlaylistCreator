@@ -111,7 +111,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="D:\Projects\Libraries\Ascon.Dialogs\Ascon.Dialogs.csproj">
+      <Project>{6a5b65c0-f70e-4ced-9b0c-8f319965755e}</Project>
+      <Name>Ascon.Dialogs</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\error.png" />
     <Resource Include="Images\file.png" />

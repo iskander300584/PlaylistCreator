@@ -120,5 +120,17 @@ namespace PlaylistMaker
 
             context.RemoveItems(list);
         }
+
+
+        /// <summary>
+        /// Закрыть
+        /// </summary>
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            if (context != null && (context.FolderForPlayList == null || context.FolderForPlayList == ""))
+                Close();
+            else if ((bool)Ascon.Dialogs.Dialogs.QuestionMessage("Закрыть без сохранения?", this))
+                Close();
+        }
     }
 }
