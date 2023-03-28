@@ -61,12 +61,12 @@ namespace PlaylistMaker.Contexts
         /// </summary>
         public string PlayListVisibleName
         {
-            get => playlistFileName;
+            get => playListVisibleName;
             private set
             {
-                if(playlistFileName != value)
+                if(playListVisibleName != value)
                 {
-                    playlistFileName = value;
+                    playListVisibleName = value;
                     OnPropertyChanged();
                 }
             }
