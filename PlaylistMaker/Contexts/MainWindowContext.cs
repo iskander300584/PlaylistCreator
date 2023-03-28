@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PlaylistMaker.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 
 namespace PlaylistMaker.Contexts
@@ -90,7 +92,13 @@ namespace PlaylistMaker.Contexts
             }
         }
 
-        //private ObservableCollection<FileItemView> items = new ObservableCollection<FileItemView>();
+
+        private ObservableCollection<FileItemView> items = new ObservableCollection<FileItemView>();
+        /// <summary>
+        /// Список файлов
+        /// </summary>
+        private ObservableCollection<FileItemView> Items
+            => items;
 
 
         /// <summary>
@@ -119,6 +127,31 @@ namespace PlaylistMaker.Contexts
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
+
+        /// <summary>
+        /// Выбрать папку для плейлиста
+        /// </summary>
+        internal void SelectPlaylistFolder()
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.ShowNewFolderButton = true;
+
+            if (dialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            Items.Clear();
+
+            FolderForPlayList = dialog.SelectedPath;
+        }
+
+
+        // TOOD
+        internal void SelectPlaylistFile()
+        {
+            // выбрать файл плейлист
+            // загрузить данные плейлиста на форму
         }
     }
 }

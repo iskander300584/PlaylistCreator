@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace PlaylistMaker
 {
     /// <summary>
@@ -27,6 +28,16 @@ namespace PlaylistMaker
         private MainWindowContext context;
 
 
+        #region Объявление команд
+
+        /// <summary>
+        /// Команда выбора папки для плейлиста
+        /// </summary>
+        public static RoutedUICommand SelectPlaylistFolder_Command = new RoutedUICommand("SelectPlaylistFolder", "SelectPlaylistFolder", typeof(MainWindow));
+
+        #endregion
+
+
         /// <summary>
         /// Главное окно
         /// </summary>
@@ -37,6 +48,24 @@ namespace PlaylistMaker
             context = new MainWindowContext();
 
             DataContext = context;
+        }
+
+
+        /// <summary>
+        /// Проверка возможноти выбрать папку
+        /// </summary>
+        private void SelectPlaylistFolder_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = context != null;
+        }
+
+
+        /// <summary>
+        /// Выбрать папку для плейлиста
+        /// </summary>
+        private void SelectPlaylistFolder_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            context.SelectPlaylistFolder();
         }
     }
 }

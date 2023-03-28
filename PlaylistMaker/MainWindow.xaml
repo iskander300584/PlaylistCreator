@@ -7,6 +7,11 @@
         mc:Ignorable="d"
         Icon="Images\logo.png"
         Title="Конструктор плей-листа" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowState="Maximized" >
+
+    <Window.CommandBindings>
+        <CommandBinding Command="local:MainWindow.SelectPlaylistFolder_Command" CanExecute="SelectPlaylistFolder_CanExecute" Executed="SelectPlaylistFolder_Execute" />
+    </Window.CommandBindings>
+    
     <Window.Resources>
         
         <!-- Стиль  кнопки -->
@@ -61,7 +66,7 @@
             </Button>
 
             <!-- Кнопка Выбрать папку -->
-            <Button Style="{StaticResource buttonStyle}" ToolTip="Выбрать папку" >
+            <Button Style="{StaticResource buttonStyle}" ToolTip="Выбрать папку" Command="local:MainWindow.SelectPlaylistFolder_Command" >
                 <Button.Content>
                     <Image Source="Images\folder.png" Style="{StaticResource mainImageStyle}" />
                 </Button.Content>
