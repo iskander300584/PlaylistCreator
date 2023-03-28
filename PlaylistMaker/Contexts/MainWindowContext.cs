@@ -18,6 +18,9 @@ namespace PlaylistMaker.Contexts
     /// </summary>
     internal class MainWindowContext : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Окно
+        /// </summary>
         private MainWindow window;
 
 
@@ -305,9 +308,15 @@ namespace PlaylistMaker.Contexts
         /// </summary>
         internal void Save()
         {
-            // TODO
+            // Получение имени плейлиста
             if (PlaylistFileName == null || PlaylistFileName == "")
-                PlaylistFileName = "playList.m3u";
+            {
+                PlaylistNameWindow _nameWind = new PlaylistNameWindow(window);
+                if (!(bool)_nameWind.ShowDialog())
+                    return;
+
+                PlaylistFileName = $"{_nameWind.NAME}.m3u";
+            }    
 
             string fileName = Path.Combine(FolderForPlayList, PlaylistFileName);
             FileInfo fileInfo = new FileInfo(fileName);

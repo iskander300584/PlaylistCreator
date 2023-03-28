@@ -68,6 +68,9 @@
     <Compile Include="Contexts\Enums.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Helpers\ItemStatusFabrique.cs" />
+    <Compile Include="PlaylistNameWindow.xaml.cs">
+      <DependentUpon>PlaylistNameWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\FolderItemView.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -83,6 +86,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PlaylistNameWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexts\MainWindowContext.cs" />

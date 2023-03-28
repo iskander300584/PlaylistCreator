@@ -61,3 +61,5 @@ e:\GIT\PlaylistMaker\bin\Debug\Images\plus_small.png
 e:\GIT\PlaylistMaker\bin\Debug\Images\save.png
 e:\GIT\PlaylistMaker\bin\Debug\Images\sucsess.png
 e:\GIT\PlaylistMaker\bin\Debug\Images\warning.png
+e:\GIT\PlaylistMaker\obj\Debug\PlaylistNameWindow.g.cs
+e:\GIT\PlaylistMaker\obj\Debug\PlaylistNameWindow.baml
