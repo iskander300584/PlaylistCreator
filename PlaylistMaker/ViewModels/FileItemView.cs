@@ -112,6 +112,9 @@ namespace PlaylistMaker.ViewModels
             Folder = folderItem;
             FullName = path;
 
+            FileInfo fileInfo = new FileInfo(FullName);
+            FileName = fileInfo.Name;
+
             GetStatus();
         }
 
@@ -130,33 +133,31 @@ namespace PlaylistMaker.ViewModels
             if(!File.Exists(FullName))
             {
                 Status = ItemStatus.NotExist;
-                FileName = string.Empty;
                 Duration = 0;
                 return;
             }
-
-            FileInfo fileInfo = new FileInfo(FullName);
-            FileName = fileInfo.Name;
 
             // Проверка вложенности в папку
             if(Folder == null)
             {
                 Status = ItemStatus.NotInFolder;
-                Duration = 0;
+                Duration = FileHelper.GetDuration(FullName);
                 return;
             }
 
-            if(fileInfo.Directory.FullName.ToLower().TrimEnd('\\') != new DirectoryInfo(Folder.FullName).FullName.ToLower().TrimEnd('\\'))
+            FileInfo fileInfo = new FileInfo(FullName);
+
+            if (fileInfo.Directory.FullName.ToLower().TrimEnd('\\') != new DirectoryInfo(Folder.FullName).FullName.ToLower().TrimEnd('\\'))
             {
                 Status = ItemStatus.NotInFolder;
-                Duration = 0;
+                Duration = FileHelper.GetDuration(FullName);
                 return;
             }
 
             if(Folder.Status == ItemStatus.NotRelative)
             {
                 Status = ItemStatus.NotRelative;
-                Duration = 0;
+                Duration = FileHelper.GetDuration(FullName);
                 return;
             }
 

@@ -46,12 +46,19 @@ namespace PlaylistMaker.Helpers
         /// <param name="fileName">имя файла</param>
         internal static int GetDuration(string fileName)
         {
-            TagLib.File tFile = TagLib.File.Create(fileName);
+            try
+            {
+                TagLib.File tFile = TagLib.File.Create(fileName);
 
-            if (tFile != null)
-                return (int)tFile.Properties.Duration.TotalSeconds;
-            else
+                if (tFile != null)
+                    return (int)tFile.Properties.Duration.TotalSeconds;
+                else
+                    return 0;
+            }
+            catch
+            {
                 return 0;
+            }
         }
 
 

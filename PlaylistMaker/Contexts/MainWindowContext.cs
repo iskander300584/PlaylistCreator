@@ -7,7 +7,6 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -187,11 +186,63 @@ namespace PlaylistMaker.Contexts
         }
 
 
-        // TOOD
+        /// <summary>
+        /// Открыть плейлист
+        /// </summary>
         internal void SelectPlaylistFile()
         {
-            // выбрать файл плейлист
-            // загрузить данные плейлиста на форму
+            OpenFileDialog dialog = new OpenFileDialog
+            {
+                Filter = "Плейлист|*.m3u",
+                FilterIndex = 0,
+                CheckFileExists = true,
+                Multiselect = false
+            };
+
+            if (dialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            Items.Clear();
+
+            FileInfo fileInfo = new FileInfo(dialog.FileName);
+            FolderForPlayList = fileInfo.Directory.FullName.TrimEnd('\\');
+            PlaylistFileName = fileInfo.Name;
+
+            AddItemsFromPlaylist(dialog.FileName);
+        }
+
+
+        /// <summary>
+        /// Получить файлы из плейлиста
+        /// </summary>
+        /// <param name="fileName">имя файла плейлиста</param>
+        private void AddItemsFromPlaylist(string fileName)
+        {
+            IEnumerable<string> fileRecords = File.ReadAllLines(fileName).Where(l => l.Length > 0 && l[0] != '#');
+            if(fileRecords == null || fileRecords.Count() == 0)
+            {
+                Ascon.Dialogs.Dialogs.WarningMessage("В файле плейлиста не обнаружено записей", window);
+                return;
+            }
+
+            foreach (string record in fileRecords)
+                AddItemFromPlaylist(record);
+        }
+
+
+        /// <summary>
+        /// Добавление информации о файле из плейлиста
+        /// </summary>
+        /// <param name="record">запись в файле</param>
+        private void AddItemFromPlaylist(string record)
+        {
+            string fullName = Path.Combine(FolderForPlayList, record);
+
+            FileInfo fileInfo = new FileInfo(fullName);
+            FolderItemView folder = new FolderItemView(FolderForPlayList, fileInfo.Directory.FullName, false);
+            FileItemView file = new FileItemView(fullName, folder);
+
+            AddItem(file);
         }
 
 
