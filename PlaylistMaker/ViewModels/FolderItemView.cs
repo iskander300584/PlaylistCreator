@@ -130,11 +130,7 @@ namespace PlaylistMaker.ViewModels
             }
             else if(relative.Length > 0)
             {
-                if (relative[0] == '\\')
-                    relative = relative.Substring(1);
-
-                if (relative[relative.Length - 1] != '\\')
-                    relative += '\\';
+                relative = relative.TrimEnd('\\').TrimStart('\\');
             }
 
             RelativeName = relative;

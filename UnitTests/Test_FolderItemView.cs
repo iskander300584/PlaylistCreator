@@ -63,7 +63,7 @@ namespace UnitTests
         public void Test_RelativeName()
         {
             FolderItemView folderItemView = new FolderItemView(Constants.PATH_TO_PLAYLIST_FILE, Constants.PATH_TO_MUSIC_FOLDER, false);
-            Assert.AreEqual(@"Rock\", folderItemView.RelativeName);
+            Assert.AreEqual(@"Rock", folderItemView.RelativeName);
         }
 
 
