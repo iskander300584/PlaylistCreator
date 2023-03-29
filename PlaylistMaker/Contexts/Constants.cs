@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace PlaylistMaker.Contexts
 {
     /// <summary>
@@ -15,5 +10,17 @@ namespace PlaylistMaker.Contexts
         /// Расширение файла плей-листа
         /// </summary>
         internal const string PLAYLIST_EXTENSION = ".m3u";
+
+
+        /// <summary>
+        /// Заголовок файла плейлиста
+        /// </summary>
+        internal const string PLAYLIST_HEADER = @"#EXTM3U";
+
+
+        /// <summary>
+        /// Заголовок метаданных элемента плейлиста
+        /// </summary>
+        internal const string PLAYLIST_ITEM_META = @"#EXTINF";
     }
 }

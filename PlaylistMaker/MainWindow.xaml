@@ -31,6 +31,9 @@
 
         <!-- Закрыть без сохранения -->
         <CommandBinding Command="local:MainWindow.Quit_Command" CanExecute="Quit_CanExecute" Executed="Quit_Execute" />
+
+        <!-- Сортировка -->
+        <CommandBinding Command="local:MainWindow.Sort_Command" CanExecute="Sort_CanExecute" Executed="Sort_Execute" />
     </Window.CommandBindings>
 
     <Window.InputBindings>
@@ -269,6 +272,32 @@
                 <ComboBoxItem Content="По имени файла" />
             </ComboBox>
 
+            <CheckBox Content="Автосортировка" IsChecked="{Binding AutoSort, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="15,0,0,0" ToolTip="Автосортировка значительно замедляет обработку данных при одновременном добавлении большого количества файлов" />
+
+            <!-- Кнопка Отсортировать -->
+            <Button ToolTip="Отсортировать" DockPanel.Dock="Left" Margin="10,0,0,0" Command="local:MainWindow.Sort_Command" >
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource buttonStyle}">
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="True" >
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <Image Source="Images\sort.png" Style="{StaticResource mainImageStyle}" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False" >
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <Image Source="Images\sort_gray.png" Style="{StaticResource mainImageStyle}" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            
             <!-- Кнопка Закрыть без сохранения -->
             <Button ToolTip="Закрыть без сохранения" Command="local:MainWindow.Quit_Command" >
                 <Button.Style>

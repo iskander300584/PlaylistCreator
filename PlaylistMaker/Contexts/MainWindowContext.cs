@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 
 namespace PlaylistMaker.Contexts
@@ -17,6 +18,8 @@ namespace PlaylistMaker.Contexts
     /// </summary>
     internal class MainWindowContext : INotifyPropertyChanged
     {
+        #region Свойства
+
         /// <summary>
         /// Окно
         /// </summary>
@@ -101,6 +104,24 @@ namespace PlaylistMaker.Contexts
         }
 
 
+        private bool autoSort = false;
+        /// <summary>
+        /// Автосортировка при добавлении файлов
+        /// </summary>
+        public bool AutoSort
+        {
+            get => autoSort;
+            set
+            {
+                if(autoSort != value)
+                {
+                    autoSort = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
         private ObservableCollection<FileItemView> items = new ObservableCollection<FileItemView>();
         /// <summary>
         /// Список файлов
@@ -118,24 +139,7 @@ namespace PlaylistMaker.Contexts
             }
         }
 
-
-
-        private List<FileItemView> selectedItems = null;
-        /// <summary>
-        /// Список выбранных файлов
-        /// </summary>
-        public List<FileItemView> SelectedItems
-        {
-            get => selectedItems;
-            set
-            {
-                if(selectedItems != value)
-                {
-                    selectedItems = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+        #endregion
 
 
         /// <summary>
@@ -202,6 +206,8 @@ namespace PlaylistMaker.Contexts
             if (dialog.ShowDialog() != DialogResult.OK)
                 return;
 
+            WaitCursor();
+
             Items.Clear();
 
             FileInfo fileInfo = new FileInfo(dialog.FileName);
@@ -209,6 +215,8 @@ namespace PlaylistMaker.Contexts
             PlaylistFileName = fileInfo.Name;
 
             AddItemsFromPlaylist(dialog.FileName);
+
+            NormalCursor();
         }
 
 
@@ -258,10 +266,14 @@ namespace PlaylistMaker.Contexts
             if (dialog.ShowDialog() != DialogResult.OK)
                 return;
 
+            WaitCursor();
+
             FolderItemView folderItem = new FolderItemView(FolderForPlayList, dialog.SelectedPath, true);
             if (folderItem.Files.Count > 0 && folderItem.Status !=  ItemStatus.NotExist)
                 foreach (FileItemView file in folderItem.Files)
                     AddItem(file);
+
+            NormalCursor();
         }
 
 
@@ -271,7 +283,7 @@ namespace PlaylistMaker.Contexts
         /// <param name="item">файл</param>
         private void AddItem(FileItemView item)
         {
-            if (Items.Count == 0)
+            if (Items.Count == 0 || !AutoSort)
             {
                 Items.Add(item);
                 return;
@@ -339,6 +351,8 @@ namespace PlaylistMaker.Contexts
             if (dialog.ShowDialog() != DialogResult.OK)
                 return;
 
+            WaitCursor();
+
             FileInfo fileInfo = new FileInfo(dialog.FileNames[0]);
             FolderItemView folderItem = new FolderItemView(FolderForPlayList, fileInfo.DirectoryName, false);
             if(folderItem.Status != ItemStatus.NotExist)
@@ -349,16 +363,20 @@ namespace PlaylistMaker.Contexts
                     AddItem(file);
                 }
             }
+
+            NormalCursor();
         }
 
 
         /// <summary>
         /// Пересортировать файлы
         /// </summary>
-        private void ReSortItems()
+        internal void ReSortItems()
         {
             if (Items.Count < 2)
                 return;
+
+            WaitCursor();
 
             List<FileItemView> _temp = new List<FileItemView>();
 
@@ -370,6 +388,8 @@ namespace PlaylistMaker.Contexts
             Items = new ObservableCollection<FileItemView>();
             foreach (FileItemView item in _temp)
                 Items.Add(item);
+
+            NormalCursor();
         }
 
 
@@ -396,20 +416,24 @@ namespace PlaylistMaker.Contexts
                 if (!(bool)_nameWind.ShowDialog())
                     return;
 
-                PlaylistFileName = $"{_nameWind.NAME}.m3u";
-            }    
+                PlaylistFileName = $"{_nameWind.NAME}{Constants.PLAYLIST_EXTENSION}";
+            }
+
+            WaitCursor();
 
             string fileName = Path.Combine(FolderForPlayList, PlaylistFileName);
             FileInfo fileInfo = new FileInfo(fileName);
             using (StreamWriter stream = new StreamWriter(fileInfo.Create(), Encoding.UTF8))
             {
-                stream.WriteLine(@"#EXTM3U");
+                stream.WriteLine(Constants.PLAYLIST_HEADER);
 
                 foreach (FileItemView file in Items)
                     WriteItem(file, stream);
 
                 stream.Close();
             }
+
+            NormalCursor();
 
             Ascon.Dialogs.Dialogs.InfoMessage("Сохранение выполнено успешно", window);
         }
@@ -428,7 +452,7 @@ namespace PlaylistMaker.Contexts
 
             string name = file.FileName.Substring(0, index);
 
-            string title = $@"#EXTINF:{file.Duration},{name}";
+            string title = $"{Constants.PLAYLIST_ITEM_META}:{file.Duration},{name}";
             stream.WriteLine(title);
 
             string path = Path.Combine(file.Folder.RelativeName, file.FileName);
@@ -443,6 +467,24 @@ namespace PlaylistMaker.Contexts
         {
             if ((bool)Ascon.Dialogs.Dialogs.QuestionMessage("Закрыть без сохранения?", window))
                 window.Close();
+        }
+
+
+        /// <summary>
+        /// Установка курсора ожидания завершения операции
+        /// </summary>
+        private void WaitCursor()
+        {
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
+        }
+
+
+        /// <summary>
+        /// Установка нормального курсора
+        /// </summary>
+        private void NormalCursor()
+        {
+            Mouse.OverrideCursor = null;
         }
     }
 }

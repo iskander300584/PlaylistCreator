@@ -60,3 +60,5 @@ E:\GIT\UnitTests\bin\Debug\Images\warning.png
 E:\GIT\UnitTests\bin\Debug\Images\warning_gray.png
 E:\GIT\UnitTests\bin\Debug\Ascon.Dialogs.dll
 E:\GIT\UnitTests\bin\Debug\Ascon.Dialogs.pdb
+E:\GIT\UnitTests\bin\Debug\Images\sort.png
+E:\GIT\UnitTests\bin\Debug\Images\sort_gray.png

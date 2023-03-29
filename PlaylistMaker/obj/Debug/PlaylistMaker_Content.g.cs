@@ -25,6 +25,8 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/plus_small_gray.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/save.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/save_gray.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/sort.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/sort_gray.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/sucsess.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/sucsess_gray.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/warning.png")]

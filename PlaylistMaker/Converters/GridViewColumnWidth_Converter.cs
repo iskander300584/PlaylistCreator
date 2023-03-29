@@ -1,4 +1,10 @@
-﻿using System;
+﻿///<summary>
+/// Код взят со StackOverflow
+/// позволяет корректно растянуть на всю оставшуюся длину ОДИН столбец таблицы
+/// </summary>
+
+
+using System;
 using System.Globalization;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -17,7 +23,6 @@ namespace PlaylistMaker.Converters
         {
             var pi = typeof(GridViewColumn).GetProperty("DesiredWidth",
                 System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
-            //Debug.Assert(pi != null);
             s_piDesiredWidth = pi;
         }
 

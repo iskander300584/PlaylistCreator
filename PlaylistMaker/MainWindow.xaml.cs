@@ -63,6 +63,12 @@ namespace PlaylistMaker
         /// </summary>
         public static RoutedUICommand Quit_Command = new RoutedUICommand("Quit", "Quit", typeof(MainWindow));
 
+
+        /// <summary>
+        /// Команда выполнения сортировки
+        /// </summary>
+        public static RoutedUICommand Sort_Command = new RoutedUICommand("Sort", "Sort", typeof(MainWindow));
+
         #endregion
 
 
@@ -81,6 +87,10 @@ namespace PlaylistMaker
         }
 
 
+        #region Обработчики команд
+
+        #region Выбор папки
+
         /// <summary>
         /// Проверка возможноти выбрать папку
         /// </summary>
@@ -98,6 +108,9 @@ namespace PlaylistMaker
             context.SelectPlaylistFolder();
         }
 
+        #endregion
+
+        #region Добавление папки
 
         /// <summary>
         /// Проверка возможности добавить папку с файлами
@@ -116,6 +129,9 @@ namespace PlaylistMaker
             context.AddFolder();
         }
 
+        #endregion
+
+        #region Удаление
 
         /// <summary>
         /// Проверка возможности удалить файлы
@@ -138,6 +154,9 @@ namespace PlaylistMaker
             context.RemoveItems(list);
         }
 
+        #endregion
+
+        #region Сохранение
 
         /// <summary>
         /// Проверка возможности сохранения
@@ -156,6 +175,9 @@ namespace PlaylistMaker
             context.Save();
         }
 
+        #endregion
+
+        #region Добавление файлов
 
         /// <summary>
         /// Проверка возможности добавления файлов
@@ -174,6 +196,9 @@ namespace PlaylistMaker
             context.AddFiles();
         }
 
+        #endregion
+
+        #region Выход без сохранения
 
         /// <summary>
         /// Проверка возможности закрыть без сохранения
@@ -192,6 +217,9 @@ namespace PlaylistMaker
             context.Quit();
         }
 
+        #endregion
+
+        #region Выбор плейлиста
 
         /// <summary>
         /// Проверка возможности выбора плейлиста
@@ -209,5 +237,30 @@ namespace PlaylistMaker
         {
             context.SelectPlaylistFile();
         }
+
+        #endregion
+
+        #region Сортировка
+
+        /// <summary>
+        /// Проверка возможности выполнения сортировки
+        /// </summary>
+        private void Sort_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = context != null && context.Items != null && context.Items.Count > 1;
+        }
+
+
+        /// <summary>
+        /// Сортировка
+        /// </summary>
+        private void Sort_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            context.ReSortItems();
+        }
+
+        #endregion
+
+        #endregion
     }
 }
