@@ -1,14 +1,7 @@
 ﻿using PlaylistMaker.Contexts;
 using PlaylistMaker.Helpers;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+
 
 namespace PlaylistMaker.ViewModels
 {
@@ -153,9 +146,16 @@ namespace PlaylistMaker.ViewModels
                 return;
             }
 
-            if(fileInfo.Directory.FullName.ToLower() != new DirectoryInfo(Folder.FullName).FullName.ToLower())
+            if(fileInfo.Directory.FullName.ToLower().TrimEnd('\\') != new DirectoryInfo(Folder.FullName).FullName.ToLower().TrimEnd('\\'))
             {
                 Status = ItemStatus.NotInFolder;
+                Duration = 0;
+                return;
+            }
+
+            if(Folder.Status == ItemStatus.NotRelative)
+            {
+                Status = ItemStatus.NotRelative;
                 Duration = 0;
                 return;
             }

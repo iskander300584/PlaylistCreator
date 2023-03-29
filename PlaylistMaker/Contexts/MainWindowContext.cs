@@ -208,7 +208,7 @@ namespace PlaylistMaker.Contexts
                 return;
 
             FolderItemView folderItem = new FolderItemView(FolderForPlayList, dialog.SelectedPath, true);
-            if (folderItem.Files.Count > 0 && folderItem.Status == ItemStatus.Exist)
+            if (folderItem.Files.Count > 0 && folderItem.Status !=  ItemStatus.NotExist)
                 foreach (FileItemView file in folderItem.Files)
                     AddItem(file);
         }
@@ -290,7 +290,7 @@ namespace PlaylistMaker.Contexts
 
             FileInfo fileInfo = new FileInfo(dialog.FileNames[0]);
             FolderItemView folderItem = new FolderItemView(FolderForPlayList, fileInfo.DirectoryName, false);
-            if(folderItem.Status == ItemStatus.Exist)
+            if(folderItem.Status != ItemStatus.NotExist)
             {
                 foreach (string fileName in dialog.FileNames)
                 {

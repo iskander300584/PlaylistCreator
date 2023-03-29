@@ -1,13 +1,9 @@
 ﻿using PlaylistMaker.Contexts;
 using PlaylistMaker.Helpers;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+
 
 namespace PlaylistMaker.ViewModels
 {
@@ -152,9 +148,6 @@ namespace PlaylistMaker.ViewModels
         /// </summary>
         public void AddFiles()
         {
-            if (Status != ItemStatus.Exist)
-                return;
-
             string[] files = Directory.GetFiles(FullName);
 
             AddFiles(FileHelper.GetAllowedFiles(files));
@@ -167,9 +160,6 @@ namespace PlaylistMaker.ViewModels
         /// <param name="files">список файлов</param>
         public void AddFiles(string[] files)
         {
-            if (Status != ItemStatus.Exist)
-                return;
-
             foreach (string fileName in files)
                 if (!Files.Any(f => f.FullName.ToLower() == fileName.ToLower()))
                     Files.Add(new FileItemView(fileName, this));

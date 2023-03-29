@@ -1,11 +1,8 @@
 ﻿using PlaylistMaker.Contexts;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
 
@@ -101,7 +98,10 @@ namespace PlaylistMaker.Helpers
         /// <param name="status">статус</param>
         internal static BitmapImage GetImage(ItemStatus status)
         {
-            return list[status];
+            if (list.Keys.Contains(status))
+                return list[status];
+            else
+                return null;
         }
     }
 }

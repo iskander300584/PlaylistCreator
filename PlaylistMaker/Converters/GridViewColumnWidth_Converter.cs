@@ -6,6 +6,9 @@ using System.Windows.Data;
 
 namespace PlaylistMaker.Converters
 {
+    /// <summary>
+    /// Преобразование ширины колонки таблицы
+    /// </summary>
     public class GridViewColumnWidth_Converter : IMultiValueConverter
     {
         private static readonly System.Reflection.PropertyInfo s_piDesiredWidth;
