@@ -73,3 +73,4 @@ e:\GIT\PlaylistMaker\bin\Debug\Images\plus_small_gray.png
 e:\GIT\PlaylistMaker\bin\Debug\Images\save_gray.png
 e:\GIT\PlaylistMaker\bin\Debug\Images\sucsess_gray.png
 e:\GIT\PlaylistMaker\bin\Debug\Images\warning_gray.png
+E:\GIT\PlaylistMaker\obj\Debug\GeneratedInternalTypeHelper.g.cs

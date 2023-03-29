@@ -8,7 +8,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows;
 
 namespace PlaylistMaker.ViewModels
 {
@@ -162,7 +162,7 @@ namespace PlaylistMaker.ViewModels
 
             Status = ItemStatus.Exist;
             Duration = FileHelper.GetDuration(FullName);
-            StatusImage = ItemStatusFabrique.GetImage(Status);
+            ParseStatus();
         }
 
 

@@ -2,6 +2,7 @@
 using PlaylistMaker.Helpers;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Media.Imaging;
 
 
@@ -26,17 +27,17 @@ namespace PlaylistMaker.ViewModels
                     status = value;
                     OnPropertyChanged();
 
-                    StatusImage = ItemStatusFabrique.GetImage(status);
+                    ParseStatus();   
                 }
             }
         }
 
 
-        protected System.Windows.Media.ImageSource statusImage = null;
+        protected BitmapImage statusImage = null;
         /// <summary>
         /// Пиктограмма статуса
         /// </summary>
-        public System.Windows.Media.ImageSource StatusImage
+        public BitmapImage StatusImage
         {
             get => statusImage;
             protected set
@@ -44,6 +45,42 @@ namespace PlaylistMaker.ViewModels
                 if (statusImage != value)
                 {
                     statusImage = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
+        protected string statusText = string.Empty;
+        /// <summary>
+        /// Текстовое пояснение состояния
+        /// </summary>
+        public string StatusText
+        {
+            get => statusText;
+            protected set
+            {
+                if(statusText != value)
+                {
+                    statusText = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
+        protected Visibility statusVisibility = Visibility.Collapsed;
+        /// <summary>
+        /// Видимость статуса
+        /// </summary>
+        public Visibility StatusVisibility
+        {
+            get => statusVisibility;
+            protected set
+            {
+                if(statusVisibility != value)
+                {
+                    statusVisibility = value;
                     OnPropertyChanged();
                 }
             }
@@ -66,5 +103,16 @@ namespace PlaylistMaker.ViewModels
         /// </summary>
         /// <param name="parameter">параметр</param>
         protected abstract void GetStatus(string parameter = "");
+
+
+        /// <summary>
+        /// Обработка статуса
+        /// </summary>
+        protected void ParseStatus()
+        {
+            StatusImage = ItemStatusFabrique.GetImage(status);
+            StatusText = Enums.GetItemStatus_Text(status);
+            StatusVisibility = status != ItemStatus.Exist ? Visibility.Visible : Visibility.Collapsed;
+        }
     }
 }

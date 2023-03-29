@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlaylistMaker"
-        xmlns:vm="clr-namespace:PlaylistMaker.ViewModels"
+        xmlns:cnv="clr-namespace:PlaylistMaker.Converters"
         mc:Ignorable="d"
         Icon="Images\logo.png"
         Title="Конструктор плей-листа" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowState="Maximized" >
@@ -70,6 +70,7 @@
             <Setter Property="TextBlock.Margin" Value="5,0,5,0" />
         </Style>
 
+        <cnv:GridViewColumnWidth_Converter x:Key="ColumnWidth_Converter" />
     </Window.Resources>
     
     <Grid>
@@ -222,16 +223,41 @@
             </Button>
         </DockPanel>
 
+        <!-- Список файлов -->
         <ListView x:Name="listView" Grid.Row="2" Margin="5,5,5,5" Grid.ColumnSpan="2" ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Stretch" SelectionMode="Extended" >
-            <ListView.ItemTemplate>
-                <DataTemplate DataType="vm:FileItemView">
-                    <DockPanel LastChildFill="True" >
-                        <TextBlock Text="{Binding StrDuration, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" Margin="5,0,5,0" />
-                        <!--<Image Source="{Binding StatusImage, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Left" Margin="0,0,5,0" Height="20" Width="20" />-->
-                        <TextBlock Text="{Binding FileName, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Left" />
-                    </DockPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+            <ListView.View>
+                <GridView>
+
+                    <GridViewColumn Width="30" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding StatusImage, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Left" Margin="5,0,0,0" Height="10" Width="10" ToolTip="{Binding StatusText, UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Имя файла" DisplayMemberBinding="{Binding FileName, UpdateSourceTrigger=PropertyChanged}" >
+                        <GridViewColumn.Width>
+                            <MultiBinding Converter="{StaticResource ColumnWidth_Converter}" ConverterParameter="*">
+                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type ListView}}" Path="ActualWidth" />
+                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type GridView}}" />
+                                <Binding RelativeSource="{RelativeSource Self}"/>
+                            </MultiBinding>
+                        </GridViewColumn.Width>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Расположение" DisplayMemberBinding="{Binding Folder.RelativeName, UpdateSourceTrigger=PropertyChanged}" Width="800" />
+
+                    <GridViewColumn Header="Длительность" Width="100" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StrDuration, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0" HorizontalAlignment="Stretch" TextAlignment="Right" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                </GridView>
+            </ListView.View>
         </ListView>
 
         <DockPanel LastChildFill="False" Grid.Row="3" Margin="5,0,5,5" >

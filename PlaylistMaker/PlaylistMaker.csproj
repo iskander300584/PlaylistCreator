@@ -66,6 +66,7 @@
     </ApplicationDefinition>
     <Compile Include="Contexts\Constants.cs" />
     <Compile Include="Contexts\Enums.cs" />
+    <Compile Include="Converters\GridViewColumnWidth_Converter.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Helpers\ItemStatusFabrique.cs" />
     <Compile Include="PlaylistNameWindow.xaml.cs">

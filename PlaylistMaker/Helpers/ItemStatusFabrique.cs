@@ -40,7 +40,7 @@ namespace PlaylistMaker.Helpers
                 list.Add(ItemStatus.NotExist, image);
             }
 
-            filePath = Path.Combine(imagesPath, "warning.png");
+            filePath = Path.Combine(imagesPath, "folder.png");
             if (File.Exists(filePath))
             {
                 BitmapImage image = GetImageFromFile(filePath);
@@ -81,7 +81,9 @@ namespace PlaylistMaker.Helpers
                 {
                     img.BeginInit();
                     img.StreamSource = stream;
+                    img.CacheOption = BitmapCacheOption.OnLoad;
                     img.EndInit();
+                    img.Freeze();
                 }
 
                 return img;
